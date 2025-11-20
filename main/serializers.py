@@ -8,6 +8,7 @@ from .models import (
     CourseDescription,
     CourseIcon,
     CourseDescriptionGroup,
+    FAQ,
 )
 
 
@@ -18,18 +19,15 @@ class CourseDescriptionGroupSerializer(serializers.ModelSerializer):
 
 
 class CourseDescriptionSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = CourseDescription
         fields = "__all__"
 
 
 class CourseIconSerializer(serializers.ModelSerializer):
-    course_id = serializers.IntegerField(write_only=True)
-
     class Meta:
         model = CourseIcon
-        fields = ["id", "icon", "course_id"]
+        fields = "__all__"
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -52,16 +50,11 @@ class CourseDetailSerializer(serializers.ModelSerializer):
         description_groups = obj.description_groups.all()
         result = []
         for group in description_groups:
-            descriptions = group.descriptions.all()
-            description_serializer = CourseDescriptionSerializer(
-                descriptions, many=True
-            )
-            result.append(
-                {
-                    "group_title": group.title,
-                    "descriptions": description_serializer.data,
-                }
-            )
+            descriptions = CourseDescriptionSerializer(
+                group.descriptions.all(), many=True
+            ).data
+            result.append({"title": group.title, "descriptions": descriptions})
+
         return result
 
 
@@ -83,8 +76,6 @@ class BannerImageSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-
-
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField()
     password = serializers.CharField(write_only=True)
@@ -95,3 +86,9 @@ class LoginSerializer(serializers.Serializer):
             raise serializers.ValidationError("Username yoki parol noto‘g‘ri!")
         data["user"] = user
         return data
+
+
+class FAQSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FAQ
+        fields = "__all__"

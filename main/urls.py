@@ -9,6 +9,7 @@ from .views import (
     PartnerViewSet,
     BannerImageViewSet,
     CourseDescriptionGroupView,
+    FAQViewSet,
 )
 
 router = DefaultRouter()
@@ -18,7 +19,8 @@ router.register(r"course-icons", CourseIconViewSet)
 router.register(r"teachers", TeacherViewSet)
 router.register(r"partners", PartnerViewSet)
 router.register(r"banners", BannerImageViewSet)
-router.register(r"course-description-group", CourseDescriptionGroupView)
+router.register(r"course-description-groups", CourseDescriptionGroupView)
+router.register(r"faqs", FAQViewSet)
 
 urlpatterns = [
     path("", include(router.urls)),

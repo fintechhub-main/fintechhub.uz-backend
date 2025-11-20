@@ -14,6 +14,7 @@ from .models import (
     CourseDescription,
     CourseIcon,
     CourseDescriptionGroup,
+    FAQ,
 )
 from .serializers import (
     CourseSerializer,
@@ -25,6 +26,7 @@ from .serializers import (
     CourseDescriptionGroupSerializer,
     CourseDetailSerializer,
     LoginSerializer,
+    FAQSerializer,
 )
 
 
@@ -87,3 +89,9 @@ class LoginView(APIView):
             {"token": token.key, "username": user.username, "is_admin": user.is_staff},
             status=status.HTTP_200_OK,
         )
+
+
+class FAQViewSet(viewsets.ModelViewSet):
+    queryset = FAQ.objects.all()
+    serializer_class = FAQSerializer
+    permission_classes = [IsAdminOrReadOnly]

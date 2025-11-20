@@ -40,4 +40,10 @@ blog:
     description
     image
     video
+    video_url
     create_at
+
+
+faq:
+    title:
+    answer:

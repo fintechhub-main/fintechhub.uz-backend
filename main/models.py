@@ -58,3 +58,8 @@ class BannerImage(models.Model):
 class Partner(models.Model):
     logo = models.ImageField(upload_to="partners/")
     title = models.CharField(max_length=96)
+
+
+class FAQ(models.Model):
+    question = models.CharField(max_length=350)
+    answer = models.TextField()
