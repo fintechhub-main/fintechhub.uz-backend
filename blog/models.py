@@ -12,6 +12,5 @@ class Blog(models.Model):
     video = models.FileField(upload_to="blog_videos/", blank=True, null=True)
     video_url = models.URLField(blank=True, null=True)
     create_at = models.DateTimeField(auto_now_add=True)
-
     def __str__(self):
         return self.title
