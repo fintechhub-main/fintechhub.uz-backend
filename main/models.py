@@ -32,6 +32,9 @@ class CourseDescriptionGroup(models.Model):
         Course, on_delete=models.CASCADE, related_name="description_groups"
     )
 
+    def __str__(self):
+        return self.title
+
 
 class CourseDescription(models.Model):
     title = models.CharField(max_length=200)
@@ -39,7 +42,8 @@ class CourseDescription(models.Model):
     group = models.ForeignKey(
         CourseDescriptionGroup, on_delete=models.CASCADE, related_name="descriptions"
     )
-
+    def __str__(self):
+        return self.title
 
 class CourseIcon(models.Model):
     icon = models.ImageField(upload_to="course_icons/", validators=[validate_image])
@@ -50,17 +54,21 @@ class Teacher(models.Model):
     full_name = models.CharField(max_length=96)
     specialty = models.CharField(max_length=96)
     photo = models.ImageField(upload_to="teacher_photos/", validators=[validate_image])
-
+    def __str__(self):
+        return self.full_name
 
 class BannerImage(models.Model):
     image = models.ImageField(upload_to="banner_images/", validators=[validate_image])
 
 
 class Partner(models.Model):
-    logo = models.ImageField(upload_to="partners/" , validators=[validate_image])
+    logo = models.ImageField(upload_to="partners/", validators=[validate_image])
     title = models.CharField(max_length=96)
-
+    def __str__(self):
+        return self.title
 
 class FAQ(models.Model):
     question = models.CharField(max_length=350)
     answer = models.TextField()
+    def __str__(self):
+        return self.question

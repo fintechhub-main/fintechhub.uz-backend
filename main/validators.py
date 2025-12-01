@@ -10,7 +10,7 @@ def validate_image(image):
         raise ValidationError("Image file is invalid!")
 
     # 2) Rasm hajmini tekshiramiz
-    max_size_mb = 15
+    max_size_mb = 50
     max_size = max_size_mb * 1024 * 1024 
 
     if image.size > max_size:
