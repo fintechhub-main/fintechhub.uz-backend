@@ -7,7 +7,9 @@ from .models import (
     CourseDescription,
     CourseIcon,
     CourseDescriptionGroup,
+    FAQ,
 )
+
 # Register your models here.
 
 admin.site.register(Course)
@@ -16,4 +18,6 @@ admin.site.register(Partner)
 admin.site.register(BannerImage)
 admin.site.register(CourseDescription)
 admin.site.register(CourseIcon)
+admin.site.register(CourseIcon)
+admin.site.register(FAQ)
 admin.site.register(CourseDescriptionGroup)
